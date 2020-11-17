@@ -1,0 +1,5 @@
+# node modules
+/node-server/node_modules
+
+# localfiles
+/node-server/yarn.lock
