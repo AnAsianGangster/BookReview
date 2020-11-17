@@ -1,0 +1,102 @@
+POST http://localhost:5000/api/books
+Content-Type: application/json
+
+{
+    "asin": "someID",
+    "title": "some book title",
+    "price": 12.80,
+    "brand": "some brand",
+    "imgUrl": "http://dummy.com",
+    "description": "some description"
+}
+
+###
+GET http://localhost:5000/api/books
+
+###
+GET http://localhost:5000/api/books/someID
+
+###
+POST http://localhost:5000/api/reviews
+Content-Type: application/json
+
+{
+    "asin": "someID",
+    "helpful": 4.0,
+    "overall": 4.0,
+    "reviewText": "some review text",
+    "reviewerID": 1,
+    "reviewerName": "some reviewer name",
+    "summary": "some summary"
+}
+
+###
+POST http://localhost:5000/api/reviews
+Content-Type: application/json
+
+{
+    "asin": "someID",
+    "helpful": 5.0,
+    "overall": 5.0,
+    "reviewText": "some review text number 2",
+    "reviewerID": 2,
+    "reviewerName": "some reviewer name number 2",
+    "summary": "some summary number 2"
+}
+
+###
+GET http://localhost:5000/api/reviews
+
+###
+GET http://localhost:5000/api/reviews/1
+
+###
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+    "username": "some-user-name-1",
+    "email": "someEmail1@somemail.com",
+    "password": "some-password",
+    "roles": ["user"]
+}
+
+###
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+    "username": "some-user-name-2",
+    "email": "someEmail2@somemail.com",
+    "password": "some-password",
+    "roles": ["user"]
+}
+
+###
+POST http://localhost:5000/api/auth/signin
+Content-Type: application/json
+
+{
+    "username": "some-user-name-2",
+    "password": "some-password"
+}
+
+###
+GET http://localhost:5000/api/user
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDUyODQ4NjMsImV4cCI6MTYwNTM3MTI2M30.LaIdS_kq70XxLxWXa3hhTBStPz1IcqozoybYvtlOyM0
+
+###
+GET http://localhost:5000/api/userProfile/2
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA1Mjg1MzQ4LCJleHAiOjE2MDUzNzE3NDh9.kVi6Kae2akIl0G3Qd3T_GMZHflQFoqzX2JYrvfd5i1g
+
+###
+PUT http://localhost:5000/api/books/someID
+Content-Type: application/json
+
+{
+    "title": "updated some book title",
+    "price": 99.80,
+    "brand": "updated some brand",
+    "imgUrl": "http://updateddummy.com",
+    "description": "updated some description"
+}
