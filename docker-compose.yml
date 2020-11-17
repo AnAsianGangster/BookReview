@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  db:
+    build: ./mysql-review
+  server:
+    build: ./node-server
+    ports:
+      - '5000:5000'
+    depends_on:
+      - db
+    restart: on-failure
