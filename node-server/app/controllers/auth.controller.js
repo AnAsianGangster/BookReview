@@ -2,6 +2,7 @@ const db = require('../models/index');
 const config = require('../config/auth.config');
 const User = db.user;
 const Role = db.role;
+const logger = require('../config/logger.config');
 
 const Op = db.Sequelize.Op;
 
@@ -28,6 +29,7 @@ exports.signup = (req, res) => {
                         res.send({
                             message: 'User was registered successfully!',
                         });
+                        logger.info('a new user registered successfully');
                     });
                 });
             } else {
@@ -53,10 +55,7 @@ exports.signin = (req, res) => {
                 return res.status(404).send({ message: 'User Not found.' });
             }
 
-            var passwordIsValid = bcrypt.compareSync(
-                req.body.password,
-                user.password
-            );
+            var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
             if (!passwordIsValid) {
                 return res.status(401).send({
