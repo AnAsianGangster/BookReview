@@ -1,7 +1,9 @@
 # Book Review Server Docker Cluster
 
 ## Description
-#### ExpressJS Sequelize Mysql
+#### APP: ExpressJS Sequelize MySQL
+#### Authentication: Jsonwebtoken
+#### Log: winston mongoDB
 
 ## Install
 ```shell
