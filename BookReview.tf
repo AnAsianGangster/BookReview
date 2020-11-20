@@ -58,23 +58,23 @@ resource "aws_security_group" "allow-web-traffic" {
   description = "Allow web inbound traffic"
   vpc_id      = aws_vpc.prod-vpc.id
   ingress {
-    description = "HTTPS traffic"
-    from_port   = 443
-    to_port     = 443
+    description = "MySQL traffic"
+    from_port   = 3306
+    to_port     = 3306
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    description = "HTTPS traffic"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
-    description = "HTTPS traffic"
+    description = "Server traffic"
     from_port   = 5000
     to_port     = 5000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    description = "MongoDB traffic"
+    from_port   = 27017
+    to_port     = 27017
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
