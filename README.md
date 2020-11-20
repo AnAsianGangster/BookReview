@@ -4,13 +4,29 @@
 #### APP: ExpressJS Sequelize MySQL
 #### Authentication: Jsonwebtoken
 #### Log: winston mongoDB
+#### build: docker-compose to build a docker cluster
+#### deployment: terraform
+#### build time: t2.micro takes 4 mins to build
 
 ## Install
+#### install locally as a docker cluster
 ```shell
 docker-compose up
 ```
+#### install on a aws instance using terraform
+```shell
+mkdir .aws && cd .aws/ && touch credentials
+```
+#### sample `credentials`
+```
+[test]
+aws_access_key_id = <your aws access key id>
+aws_secret_access_key = <your aws secret access key>
+```
 
 ## Usage
+
+> If installed on aws, `localhost` will change to your aws public ip
 
 root
 
