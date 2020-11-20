@@ -5,8 +5,8 @@ CREATE TABLE books (
     brand VARCHAR(255),
     imgUrl VARCHAR(255),
     description VARCHAR(255),
-    created_at datetime DEFAULT NULL,
-    updated_at datetime DEFAULT NULL
+    createdAt DATETIME DEFAULT NULL,
+    updatedAt DATETIME DEFAULT NULL
 );
 
 CREATE TABLE users (
@@ -14,15 +14,15 @@ CREATE TABLE users (
     username VARCHAR(255),
     email VARCHAR(255),
     password VARCHAR(255),
-    created_at datetime DEFAULT NULL,
-    updated_at datetime DEFAULT NULL
+    createdAt DATETIME DEFAULT NULL,
+    updatedAt DATETIME DEFAULT NULL
 );
 
 CREATE TABLE roles (
     id INT PRIMARY KEY,
     name VARCHAR(255),
-    created_at datetime DEFAULT NULL,
-    updated_at datetime DEFAULT NULL
+    createdAt DATETIME DEFAULT NULL,
+    updatedAt DATETIME DEFAULT NULL
 );
 
 CREATE TABLE userRoles (
@@ -30,8 +30,8 @@ CREATE TABLE userRoles (
         ON DELETE CASCADE,
     reviewerID INT REFERENCES users(reviewerID)
         ON DELETE CASCADE,
-    created_at datetime DEFAULT NULL,
-    updated_at datetime DEFAULT NULL
+    createdAt DATETIME DEFAULT NULL,
+    updatedAt DATETIME DEFAULT NULL
 );
 
 CREATE TABLE reviews (
@@ -45,6 +45,6 @@ CREATE TABLE reviews (
         ON DELETE CASCADE,
     reviewerName VARCHAR(255),
     summary VARCHAR(255),
-    created_at datetime DEFAULT NULL,
-    updated_at datetime DEFAULT NULL
+    createdAt DATETIME DEFAULT NULL,
+    updatedAt DATETIME DEFAULT NULL
 );
