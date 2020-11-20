@@ -13,14 +13,12 @@ app.use(cors(corsOptions));
 const db = require('./app/models');
 const Role = db.role;
 
-db.sequelize.sync();
-/*
+// db.sequelize.sync();
 // debug resync
 db.sequelize.sync({ force: true }).then(() => {
-    console.log('Drop and Resync Db');
+    // console.log('Drop and Resync Db');
     initial();
 });
-*/
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
