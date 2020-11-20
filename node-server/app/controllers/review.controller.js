@@ -1,6 +1,8 @@
 const db = require('../models/index');
 const Review = db.reviews;
 
+const logger = require('../config/logger.config');
+
 // create a new review
 exports.createReview = (req, res) => {
     // Validate request
@@ -8,6 +10,7 @@ exports.createReview = (req, res) => {
         res.status(400).send({
             message: 'asin can not be empty!',
         });
+        logger.error('Error empty asin when create review');
         return;
     }
 
@@ -26,13 +29,16 @@ exports.createReview = (req, res) => {
     Review.create(review)
         .then((data) => {
             res.send(data);
+            // TODO log review id
+            logger.info(
+                `Successfully created review: asin:${review.asin} reviewerID: ${review.reviewerID}`
+            );
         })
         .catch((err) => {
             res.status(500).send({
-                message:
-                    err.message ||
-                    'Some error occurred while creating the book.',
+                message: err.message || 'Some error occurred while creating the book.',
             });
+            logger.error(`Error when creating review: ${err.message}`);
         });
 };
 
@@ -41,13 +47,13 @@ exports.findAllReviews = (req, res) => {
     Review.findAll()
         .then((data) => {
             res.send(data);
+            logger.info('Successfully find all reviews');
         })
         .catch((err) => {
             res.status(500).send({
-                message:
-                    err.message ||
-                    'Some error occurred while finding all reviews',
+                message: err.message || 'Some error occurred while finding all reviews',
             });
+            logger.error(`Error when find al reviews: ${err.message}`);
         });
 };
 
@@ -58,13 +64,13 @@ exports.findReviewById = (req, res) => {
     Review.findByPk(id, { include: ['book', 'reviewer'] })
         .then((data) => {
             res.send(data);
+            logger.info(`Successfully find review by id: ${id}`);
         })
         .catch((err) => {
             res.status(500).send({
-                message:
-                    err.message ||
-                    'Some error occurred while creating the book.',
+                message: err.message || 'Some error occurred while creating the book.',
             });
+            logger.error(`Error when find review by id ${err.message}`);
         });
 };
 
@@ -82,13 +88,13 @@ exports.updateReviewById = (req, res) => {
     Review.update(newReview, { where: { id: id } })
         .then((result) => {
             res.send(result);
+            logger.info(`Successfully update review by id: ${id}`);
         })
         .catch((err) => {
             res.status(500),
                 send({
-                    message:
-                        err.message ||
-                        'Some error occurred while updating review',
+                    message: err.message || 'Some error occurred while updating review',
                 });
+            logger.error(`Error when update review by id: ${err.message}`);
         });
 };
