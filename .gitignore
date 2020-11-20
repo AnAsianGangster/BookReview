@@ -4,3 +4,6 @@
 # localfiles
 /node-server/yarn.lock
 .DS_Store
+
+# terraform
+/*.tf
