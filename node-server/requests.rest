@@ -1,4 +1,4 @@
-POST http://localhost:5000/api/books
+POST http://54.255.45.221:5000/api/books
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ GET http://175.41.157.115:5000/api/books
 GET http://175.41.157.115:5000/api/books/someID
 
 ###
-POST http://localhost:5000/api/reviews
+POST http://54.255.45.221:5000/api/reviews
 Content-Type: application/json
 
 {
@@ -51,7 +51,7 @@ GET http://localhost:5000/api/reviews
 GET http://localhost:5000/api/reviews/1
 
 ###
-POST http://54.254.92.252:5000/api/auth/signup
+POST http://175.41.157.115:5000/api/auth/signup
 Content-Type: application/json
 
 {
