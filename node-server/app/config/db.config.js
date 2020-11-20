@@ -2,7 +2,6 @@ require('dotenv').config();
 
 module.exports = {
     HOST: process.env.MYSQLDB,
-    PORT: '3306',
     USER: 'root',
     PASSWORD: 'password',
     DB: 'BookReview',
