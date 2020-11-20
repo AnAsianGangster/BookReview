@@ -1,17 +1,19 @@
 require('dotenv').config();
 const { createLogger, transports, format } = require('winston');
 require('winston-mongodb');
+const { combine, timestamp, printf } = format;
 
-console.log(process.env.MONGODB);
+const logFormat = printf(({ level, message, timestamp }) => {
+    return `${timestamp} ${level}: ${message}`;
+});
 
 const logger = createLogger({
+    format: combine(timestamp(), logFormat),
     transports: [
         new transports.MongoDB({
-            level: 'info',
             db: process.env.MONGODB,
-            collection: 'InfoLog',
+            collection: 'Log',
         }),
-        // TODO logger structure
     ],
 });
 

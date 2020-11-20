@@ -2,12 +2,13 @@ const db = require('../models/index');
 const config = require('../config/auth.config');
 const User = db.user;
 const Role = db.role;
-const logger = require('../config/logger.config');
 
 const Op = db.Sequelize.Op;
 
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
+
+const logger = require('../config/logger.config');
 
 exports.signup = (req, res) => {
     // Save User to Database
@@ -29,18 +30,20 @@ exports.signup = (req, res) => {
                         res.send({
                             message: 'User was registered successfully!',
                         });
-                        logger.info('a new user registered successfully');
+                        logger.info(`Successfully registered user: ${user.username}`);
                     });
                 });
             } else {
                 // user role = 1
                 user.setRoles([1]).then(() => {
                     res.send({ message: 'User was registered successfully!' });
+                    logger.info(`Successfully registered user with default role: ${user.username}`);
                 });
             }
         })
         .catch((err) => {
             res.status(500).send({ message: err.message });
+            logger.error(`Error creating user: ${err.message}`);
         });
 };
 
@@ -52,12 +55,14 @@ exports.signin = (req, res) => {
     })
         .then((user) => {
             if (!user) {
+                logger.error('Error user Not found when signin');
                 return res.status(404).send({ message: 'User Not found.' });
             }
 
             var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
             if (!passwordIsValid) {
+                logger.error('Error invalid password when signin');
                 return res.status(401).send({
                     accessToken: null,
                     message: 'Invalid Password!',
@@ -80,9 +85,11 @@ exports.signin = (req, res) => {
                     roles: authorities,
                     accessToken: token,
                 });
+                logger.info(`Successsfully sigin user: ${user.reviewerID}`);
             });
         })
         .catch((err) => {
             res.status(500).send({ message: err.message });
+            logger.error(`Error when sign in: ${err.message}`);
         });
 };
