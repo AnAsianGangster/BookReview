@@ -23,4 +23,5 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
     restart: on-failure
     links:
+      - db
       - logger-mongodb
