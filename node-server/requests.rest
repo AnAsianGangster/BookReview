@@ -1,8 +1,8 @@
-POST http://54.251.117.183:5000/api/books
+POST http://52.74.149.203:5000/api/books
 Content-Type: application/json
 
 {
-    "asin": "someID",
+    "asin": "someID2",
     "title": "some book title",
     "price": 12.80,
     "brand": "some brand",
@@ -11,13 +11,13 @@ Content-Type: application/json
 }
 
 ###
-GET http://175.41.157.115:5000/api/books
+GET http://52.74.149.203:5000/api/books
 
 ###
-GET http://175.41.157.115:5000/api/books/someID
+GET http://52.74.149.203:5000/api/books/someID
 
 ###
-POST http://localhost:5000/api/reviews
+POST http://52.74.149.203:5000/api/reviews
 Content-Type: application/json
 
 {
