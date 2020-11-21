@@ -1,58 +1,34 @@
-# Book Review
+# Book Review Server
 
 ## Description
 
-#### express sequelize mysql
+Built using Expressjs, Sequelize ORM.
 
-## Install
+This, `node-server`, is the server of the Book Review cluster. This container
+will do CRUD operations with MySQL database container `mysql-review`. And this
+container will log all outward traffic to MongoDB container `logger-mongodb`.
+
+## Installation
+
+Installing this on local and test with local environment.
 
 ```shell
 $ yarn install
 ```
 
-configuration
+### Configuration
 
-```shell
-$ cd app && mkdir config && cd config && touch db.config.js && touch auth.config.js
-```
-
-sample db.config.js
-
-```javascript
-module.exports = {
-    HOST: 'localhost',
-    USER: 'root',
-    PASSWORD: 'password',
-    DB: 'BookReview',
-    dialect: 'mysql',
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000,
-    },
-};
-```
-
-> Note: Need to create a DB with with the same name first (can be empty)
-
-sample auth.config.js
-
-```javascript
-module.exports = {
-    secret: 'this-is-the-secret-key',
-};
-```
+Change `.env` file in this folder for your local environment
 
 ## Usage
 
-root
+root (default port is `5000`)
 
 ```
 http://localhost:5000
 ```
 
-API
+API route
 
 ```
 http://localhost:5000/api
