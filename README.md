@@ -11,17 +11,17 @@
 
 <!-- table of contents -->
 
--   [Description](##Description)
-    -   [Built With](###Built-With)
--   [Installation](##Installation)
-    -   [Install locally as a docker cluster](###Install-locally-as-a-docker-cluster)
-    -   [Deploy on a aws instance using terraform](###Deploy-on-a-aws-instance-using-terraform)
-        -   [Sample credentials](####Sample-credentials)
-        -   [deploy](####Deploy)
--   [Usage](##usage)
--   [Structure](##Structure)
-    -   [Server](###Server)
-    -   [MySQL Schema](###MySQL-Schema)
+-   [Description](#Description)
+    -   [Built With](#Built-With)
+-   [Installation](#Installation)
+    -   [Install locally as a docker cluster](#Install-locally-as-a-docker-cluster)
+    -   [Deploy on a aws instance using terraform](#Deploy-on-a-aws-instance-using-terraform)
+        -   [Sample credentials](#Sample-credentials)
+        -   [deploy](#Deploy)
+-   [Usage](#usage)
+-   [Structure](#Structure)
+    -   [Server](#Server)
+    -   [MySQL Schema](#MySQL-Schema)
 
 ## Description
 
