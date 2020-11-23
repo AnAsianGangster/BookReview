@@ -1,5 +1,13 @@
 # Book Review Server
 
+<!-- table of contents -->
+
+-   [Description](#Description)
+    -   [File Structure](#File-Structure)
+-   [Installation](#Installation)
+    -   [Configuration](#Configuration)
+-   [Usage](#Usage)
+
 ## Description
 
 Built using Expressjs, Sequelize ORM.
@@ -7,6 +15,46 @@ Built using Expressjs, Sequelize ORM.
 This, `node-server`, is the server of the Book Review cluster. This container
 will do CRUD operations with MySQL database container `mysql-review`. And this
 container will log all outward traffic to MongoDB container `logger-mongodb`.
+
+### File Structure
+
+This server **strictly** follow MVC design pattern
+
+Structure
+
+```sh
+.
+├── app
+│   ├── config # configuration files
+│   │   ├── auth.config.js
+│   │   ├── db.config.js
+│   │   └── logger.config.js
+│   ├── controllers # CRUD controllers
+│   │   ├── auth.controller.js
+│   │   ├── book.controller.js
+│   │   ├── review.controller.js
+│   │   └── user.controller.js
+│   ├── middleware # middleware functions mostly jwt (log is in logger.config.js)
+│   │   ├── authJwt.js
+│   │   ├── index.js # expose all middleware functions
+│   │   └── verifySignUp.js
+│   ├── models # sequelize models
+│   │   ├── book.model.js
+│   │   ├── index.js # expose all models to controllers
+│   │   ├── review.model.js
+│   │   ├── role.model.js
+│   │   └── user.model.js
+│   └── routes # all routes, and combine middleware functions
+│       ├── auth.routes.js # signup, signin and jwt
+│       ├── book.routes.js
+│       ├── index.routes.js # expose all routes to server.js
+│       ├── review.routes.js
+│       └── user.routes.js # user contents
+├── .env # environment configuration (ports and links for docker)
+├── package.json # dependencies
+├── requests.rest # sample test with rest client VS Code pluggin
+└── server.js # server instances / entry point
+```
 
 ## Installation
 
