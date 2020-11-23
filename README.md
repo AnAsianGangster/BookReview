@@ -1,9 +1,34 @@
 # Book Review Server Docker Cluster
 
+<!-- logo -->
+<p align="center">
+    <img
+        alt="logo"
+        src="./static/logo.svg"
+        width="400"
+    />
+</p>
+
+<!-- table of contents -->
+
+-   [Description](##Description)
+    -   [Built With](###Built-With)
+-   [Installation](##Installation)
+    -   [Install locally as a docker cluster](###Install-locally-as-a-docker-cluster)
+    -   [Deploy on a aws instance using terraform](###Deploy-on-a-aws-instance-using-terraform)
+        -   [Sample credentials](####Sample-credentials)
+        -   [deploy](####Deploy)
+-   [Usage](##usage)
+-   [Structure](##Structure)
+    -   [Server](###Server)
+    -   [MySQL Schema](###MySQL-Schema)
+
 ## Description
 
 This is a Book Review service docker cluster that can be deploy to AWS using
 TerraForm. Each container has their own `README` to explain its functionality.
+
+### Built With
 
 | Part            |      Technology      |
 | --------------- | :------------------: |
@@ -58,7 +83,7 @@ terraform apply
 
 ## Usage
 
-root
+Root
 
 ```
 http://<your instance ip>:5000
@@ -91,3 +116,14 @@ http://<your instance ip>:5000/api
 | `GET`   |          /admin           |                           admin content |
 
 > **WARNING** :exclamation: Need at least five dummy books in database
+
+## Structure
+
+### Server
+
+The whole thing is a docker cluster
+![docker cluster structure](static/BookReviewAPIServer.png)
+
+### MySQL Schema
+
+![SQL DB schema](static/BookReviewSchema.png)

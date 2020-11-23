@@ -1,0 +1,8 @@
+static
+.git
+.gitignore
+Dockerfile
+README.md
+BookReview.tf
+request.rest
+yarn.lock
