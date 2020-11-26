@@ -1,6 +1,6 @@
 FROM debian:buster-slim
 
-RUN apt-get -y install sudo
+RUN apt-get update && apt-get -y install sudo
 
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 
@@ -10,7 +10,7 @@ CMD /bin/bash
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mysql && useradd -r -g mysql mysql
 
-RUN apt-get update && apt-get install -y --no-install-recommends gnupg dirmngr && rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y --no-install-recommends gnupg dirmngr && rm -rf /var/lib/apt/lists/*
 
 # add gosu for easy step-down from root
 # https://github.com/tianon/gosu/releases

@@ -1,10 +1,16 @@
 FROM ubuntu:xenial
 
+RUN apt-get update && apt-get -y install sudo
+
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+
+USER docker
+CMD /bin/bash
+
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
 RUN set -eux; \
-	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		ca-certificates \
 		jq \
@@ -102,13 +108,6 @@ RUN mkdir -p /data/db /data/configdb \
 VOLUME /data/db /data/configdb
 
 COPY docker-entrypoint.sh /usr/local/bin/
-
-RUN apt-get -y install sudo
-
-RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
-
-USER docker
-CMD /bin/bash
 
 ENTRYPOINT ["sudo", "/usr/local/bin/docker-entrypoint.sh"]
 
