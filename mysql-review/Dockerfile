@@ -87,6 +87,14 @@ VOLUME /var/lib/mysql
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
+
+RUN apt-get -y install sudo
+
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+
+USER docker
+CMD /bin/bash
+
 ENTRYPOINT ["sudo", "/usr/local/bin/docker-entrypoint.sh"]
 
 CMD ["mysqld"]
