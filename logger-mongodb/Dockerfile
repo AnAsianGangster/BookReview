@@ -102,7 +102,7 @@ RUN mkdir -p /data/db /data/configdb \
 VOLUME /data/db /data/configdb
 
 COPY docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["sudo", "/usr/local/bin/docker-entrypoint.sh"]
 
 CMD ["mongod"]
 
