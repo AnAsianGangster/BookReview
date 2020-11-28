@@ -3,26 +3,61 @@ const MetaBook = db.metaBooks;
 
 // Create and Save a new MetaBook
 exports.create = (req, res) => {
-    res.status(201).send({
-        message: 'Create meta hit',
+    // valid request
+    if (!req.body.title) {
+        res.status(400).send({
+            message: 'Content cannot be empty',
+        });
+        return;
+    }
+
+    // create the metaBook
+    const metaBook = new MetaBook({
+        asin: req.body.asin,
+        title: req.body.title,
+        price: req.body.price,
+        imUrl: req.body.imUrl,
+        brand: req.body.brand,
+        categories: req.body.categories,
     });
+
+    // save the metaBook in mongodb
+    metaBook
+        .save(metaBook)
+        .then((data) => {
+            res.status(201).send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: err.message || 'Some error occurred while creating the metaBook.',
+            });
+        });
 };
 
-// Retrieve all MetaBook from the database.
+// Retrieve all MetaBook from the database by title.
 exports.findAll = (req, res) => {
-    res.status(200).send({
-        message: 'retrieve all meta hit',
-    });
+    const title = req.query.title;
+    var condition = title ? { title: { $regex: new RegExp(title), $options: 'i' } } : {};
+
+    MetaBook.find(condition)
+        .then((data) => res.status(200).send(data))
+        .catch((err) => {
+            res.status(500).send({
+                message: err.message || 'Some error occurred while retrieving metaBooks.',
+            });
+        });
 };
 
-// Find a single MetaBooks with an id
+// Find a single MetaBooks with an id.
+// NOTE not important
 exports.findMetaBookById = (req, res) => {
     res.status(200).send({
-        message: 'find ono by id meta hit',
+        message: 'find one by id meta hit',
     });
 };
 
 // Update a MetaBook by the id in the request
+// NOTE not important
 exports.updateMetaBookById = (req, res) => {
     res.status(200).send({
         message: 'update one by id meta hit',
@@ -30,6 +65,7 @@ exports.updateMetaBookById = (req, res) => {
 };
 
 // Delete a MetaBook with the specified id in the request
+// NOTE not important
 exports.delete = (req, res) => {
     res.status(200).send({
         message: 'delete one by id meta hit',
