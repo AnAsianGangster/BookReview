@@ -1,5 +1,10 @@
+// mysql db
 const dbConfig = require('../config/db.config.js');
 
+// mongo db
+const mongoConfig = require('../config/mongodb.config');
+
+// sequelize orm for mysql
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
@@ -14,8 +19,14 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     },
 });
 
+// mongoose odm for mongo
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
+// db declaration
 const db = {};
 
+// ========================== sequelize ========================================
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
@@ -58,5 +69,10 @@ db.user.belongsToMany(db.role, {
 });
 
 db.ROLES = ['user', 'admin', 'moderator'];
+
+// ========================== mongoose =========================================
+db.mongoose = mongoose;
+db.url = mongoConfig.url;
+db.metaBooks = require('./metaBook.model.js')(mongoose);
 
 module.exports = db;
