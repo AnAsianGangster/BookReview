@@ -7,6 +7,9 @@ module.exports = (app) => {
     // book routes
     require('./book.routes')(router);
 
+    // metaBook routes
+    require('./metaBook.routes')(router);
+
     // review routes
     require('./review.routes')(router);
 
