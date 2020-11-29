@@ -37,7 +37,7 @@ exports.create = (req, res) => {
 // Retrieve all MetaBook from the database by title.
 exports.findAll = (req, res) => {
     const title = req.query.title;
-    var condition = title ? { title: { $regex: new RegExp(title), $options: 'i' } } : {};
+    let condition = title ? { title: { $regex: new RegExp(title), $options: 'i' } } : {};
 
     MetaBook.find(condition)
         .then((data) => res.status(200).send(data))
@@ -46,6 +46,14 @@ exports.findAll = (req, res) => {
                 message: err.message || 'Some error occurred while retrieving metaBooks.',
             });
         });
+};
+
+// Find MetaBooks by categories
+exports.findMetaBookByCategories = (req, res) => {
+    const categories = req.query.categories;
+    res.status(200).send({
+        message: 'find by categories endpoint hit',
+    });
 };
 
 // Find a single MetaBooks with an id.
