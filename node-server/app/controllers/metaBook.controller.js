@@ -51,6 +51,23 @@ exports.findAll = (req, res) => {
 // Find MetaBooks by categories
 exports.findMetaBookByCategories = (req, res) => {
     const categories = req.query.categories;
+
+    if (!req.query.categories) {
+        res.status(400).send({
+            message: 'categories cannot be empty.',
+        });
+    }
+
+    let condition = { categories: [categories] };
+
+    MetaBook.find(condition)
+        .then((data) => res.status(200).send(data))
+        .catch((err) => {
+            res.status(500).send({
+                message: err.message || 'Some error occurred while retrieving metaBooks.',
+            });
+        });
+
     res.status(200).send({
         message: 'find by categories endpoint hit',
     });
