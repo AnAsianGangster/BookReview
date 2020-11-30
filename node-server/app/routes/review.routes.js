@@ -10,6 +10,9 @@ module.exports = (router) => {
     // Retrieve a single review with id
     router.get('/reviews/:id', reviews.findReviewById);
 
+    // Retrieve reviews by asin
+    router.get('/reviews/asin', reviews.findReviewByAsin);
+
     // Update a single review with id
     router.put('/reviews/:id', reviews.updateReviewById);
 };
