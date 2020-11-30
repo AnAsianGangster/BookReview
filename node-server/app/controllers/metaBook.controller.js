@@ -10,7 +10,8 @@ exports.create = (req, res) => {
         });
         return;
     }
-
+    
+    // FIXME doesn't handle duplicate
     // create the metaBook
     const metaBook = new MetaBook({
         asin: req.body.asin,
@@ -34,8 +35,23 @@ exports.create = (req, res) => {
         });
 };
 
+// Retrieve ten random MetaBooks from the database
+exports.findTenRandomMetaBooks = (req, res) => {
+    const numberOfBooks = parseInt(req.params.numberOfBooks) || 10;
+
+    MetaBook.find()
+        .limit(numberOfBooks)
+        .exec((err, data) => {
+            if (err) {
+                res.status(500).send({ message: 'error occurred when give 10 random books' });
+            } else {
+                res.status(200).send(data);
+            }
+        });
+};
+
 // Retrieve all MetaBook from the database by title.
-exports.findAll = (req, res) => {
+exports.findMetaBookByTitle = (req, res) => {
     const title = req.query.title;
     let condition = title ? { title: { $regex: new RegExp(title), $options: 'i' } } : {};
 
