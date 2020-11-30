@@ -40,7 +40,7 @@ exports.createBook = (req, res) => {
 
 // all books with reviews
 exports.findAllBooks = (req, res) => {
-    Book.findAll({ include: ['reviews'] })
+    Book.findAll()
         .then((data) => {
             res.send(data);
             logger.info('Successfully find all books');
@@ -57,7 +57,7 @@ exports.findAllBooks = (req, res) => {
 exports.findBookById = (req, res) => {
     const asin = req.params.asin;
 
-    Book.findByPk(asin, { include: ['reviews'] })
+    Book.findByPk(asin)
         .then((data) => {
             res.send(data);
             logger.info(`Successfully find book by id: ${asin}`);

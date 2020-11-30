@@ -2,10 +2,11 @@ module.exports = (sequelize, DataTypes) => {
     const Review = sequelize.define('review', {
         asin: {
             type: DataTypes.STRING,
-            references: {
-                model: 'books',
-                key: 'asin',
-            },
+            // NOTE foreign key constrain deprecated
+            // references: {
+            //     model: 'books',
+            //     key: 'asin',
+            // },
         },
         helpful: {
             type: DataTypes.FLOAT,

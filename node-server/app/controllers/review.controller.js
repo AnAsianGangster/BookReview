@@ -61,7 +61,7 @@ exports.findAllReviews = (req, res) => {
 exports.findReviewById = (req, res) => {
     const id = req.params.id;
 
-    Review.findByPk(id, { include: ['book', 'reviewer'] })
+    Review.findByPk(id, { include: ['reviewer'] })
         .then((data) => {
             res.send(data);
             logger.info(`Successfully find review by id: ${id}`);
@@ -79,7 +79,7 @@ exports.findReviewByAsin = (req, res) => {
 
     Review.findAll({ where: { asin: asin } })
         .then((data) => {
-            if (!data) {
+            if (data == []) {
                 res.status(400).send({
                     message: `asin: ${asin}, not found.`,
                 });
