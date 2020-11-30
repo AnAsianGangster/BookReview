@@ -42,8 +42,7 @@ CREATE TABLE userRoles (
 -- reviews table
 CREATE TABLE reviews (
     id int AUTO_INCREMENT PRIMARY KEY,
-    asin VARCHAR(255) REFERENCES books(asin)
-        ON DELETE CASCADE,
+    asin VARCHAR(255),
     helpful FLOAT,
     overall FLOAT,
     reviewText VARCHAR(255),

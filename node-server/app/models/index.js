@@ -36,15 +36,16 @@ db.role = require('./role.model.js')(sequelize, Sequelize);
 db.user = require('./user.model.js')(sequelize, Sequelize);
 
 // associations
-db.books.hasMany(db.reviews, {
-    foreignKey: 'asin',
-    as: 'reviews',
-});
+// NOTE sql relation aborted
+// db.books.hasMany(db.reviews, {
+//     foreignKey: 'asin',
+//     as: 'reviews',
+// });
 
-db.reviews.belongsTo(db.books, {
-    foreignKey: 'asin',
-    as: 'book',
-});
+// db.reviews.belongsTo(db.books, {
+//     foreignKey: 'asin',
+//     as: 'book',
+// });
 
 db.user.hasMany(db.reviews, {
     foreignKey: 'reviewerID',
