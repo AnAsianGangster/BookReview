@@ -4,8 +4,11 @@ module.exports = (router) => {
     // Create a new metaBook
     router.post('/metaBooks', metaBooks.create);
 
+    // Retrieve ten random metaBooks, default 10
+    router.get('/metaBooks/:numberOfBooks', metaBooks.findTenRandomMetaBooks);
+
     // Retrieve all metaBooks by title
-    router.get('/metaBooks', metaBooks.findAll);
+    router.get('/metaBooks/title', metaBooks.findMetaBookByTitle);
 
     // Retrieve all metaBooks by categories
     router.get('/metaBooks/categories', metaBooks.findMetaBookByCategories);
