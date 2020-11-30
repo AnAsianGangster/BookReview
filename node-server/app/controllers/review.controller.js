@@ -68,9 +68,29 @@ exports.findReviewById = (req, res) => {
         })
         .catch((err) => {
             res.status(500).send({
-                message: err.message || 'Some error occurred while creating the book.',
+                message: err.message || 'Some error occurred while creating the review.',
             });
             logger.error(`Error when find review by id ${err.message}`);
+        });
+};
+
+exports.findReviewByAsin = (req, res) => {
+    const asin = req.query.asin;
+
+    Review.findAll({ where: { asin: asin } })
+        .then((data) => {
+            if (!data) {
+                res.status(400).send({
+                    message: `asin: ${asin}, not found.`,
+                });
+            } else {
+                res.status(200).send(data);
+            }
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: err.message || 'Some error occurred while finding reivew by asin',
+            });
         });
 };
 
