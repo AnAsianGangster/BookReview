@@ -1,6 +1,9 @@
 const db = require('../models');
 const MetaBook = db.metaBooks;
 
+// regular expression
+const regexUtil = require('./util/regex');
+
 // Create and Save a new MetaBook
 exports.create = (req, res) => {
     // valid request
@@ -10,7 +13,7 @@ exports.create = (req, res) => {
         });
         return;
     }
-    
+
     // FIXME doesn't handle duplicate
     // create the metaBook
     const metaBook = new MetaBook({
@@ -53,7 +56,8 @@ exports.findTenRandomMetaBooks = (req, res) => {
 // Retrieve all MetaBook from the database by title.
 exports.findMetaBookByTitle = (req, res) => {
     const title = req.query.title;
-    let condition = title ? { title: { $regex: new RegExp(title), $options: 'i' } } : {};
+    const regex = new RegExp(regexUtil.escapeRegex(title), 'gi');
+    let condition = { title: regex };
 
     MetaBook.find(condition)
         .then((data) => res.status(200).send(data))

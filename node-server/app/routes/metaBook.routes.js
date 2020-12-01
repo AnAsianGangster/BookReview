@@ -8,17 +8,17 @@ module.exports = (router) => {
     router.get('/metaBooks/:numberOfBooks', metaBooks.findTenRandomMetaBooks);
 
     // Retrieve all metaBooks by title
-    router.get('/metaBooks/title', metaBooks.findMetaBookByTitle);
+    router.get('/metaBooksSearchByTitle', metaBooks.findMetaBookByTitle);
 
     // Retrieve all metaBooks by categories
-    router.get('/metaBooks/categories', metaBooks.findMetaBookByCategories);
+    router.get('/metaBooksSearchByCategories', metaBooks.findMetaBookByCategories);
 
     // Retrieve a single metaBook with id
-    router.get('/metaBooks/:id', metaBooks.findMetaBookById);
+    router.get('/metaBooksSearchById/:id', metaBooks.findMetaBookById);
 
     // update a single metaBook with id
-    router.put('/metaBooks/:id', metaBooks.updateMetaBookById);
+    router.put('/metaBooksUpdateById/:id', metaBooks.updateMetaBookById);
 
     // Delete a metaBook with id
-    router.delete('/metaBooks/:id', metaBooks.delete);
+    router.delete('/metaBooksDeleteById/:id', metaBooks.delete);
 };
