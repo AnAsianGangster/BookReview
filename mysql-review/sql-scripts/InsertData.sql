@@ -1,0 +1,3 @@
+-- TODO load infiles
+-- users table && reviews table
+-- but i have some trouble with it

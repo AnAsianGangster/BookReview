@@ -5,9 +5,8 @@ ENV MYSQL_ROOT_PASSWORD=password
 ENV DATABASE_HOST=db
 
 RUN apt update
-RUN apt install -y unzip
-RUN apt install -y wget
 
 COPY ./sql-scripts /docker-entrypoint-initdb.d/
+COPY ./BookReviewData /
 
 EXPOSE 3306

@@ -1,4 +1,8 @@
--- TODO reviewerID is not INT in the dataset
+-- FIXME reviewerID is not INT --> varchar 255
+-- helpful --> varchar 255
+-- overall ?? --> float OR int
+-- reviewText varchar 255 --> TEXT
+
 -- books table
 CREATE TABLE books (
     asin VARCHAR(255) PRIMARY KEY,
