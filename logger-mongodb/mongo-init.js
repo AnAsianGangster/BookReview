@@ -1,6 +1,6 @@
 db.createUser(
     {
-        user: "test",
+        user: "root",
         pwd: "test",
         roles: [
             {
